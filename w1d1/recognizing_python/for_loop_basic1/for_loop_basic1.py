@@ -32,3 +32,4 @@ mult = 3
 for x in range(2,54):
     if x % 3 == 0:
         print(x)
+
