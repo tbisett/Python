@@ -25,5 +25,5 @@ cameron = user("Cameron", 0)
 
 taylor.make_withdrawal(30)
 taylor.display_user_balance()
-taylor.transfer_money(cameron, 70)z
+taylor.transfer_money(cameron, 70)
 cameron.display_user_balance()
