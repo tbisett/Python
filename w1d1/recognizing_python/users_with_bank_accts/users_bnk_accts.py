@@ -1,5 +1,5 @@
 class BankAccount:
-    bankName = "First National Dojo"
+    # bankName = "First National Dojo"
     all_accounts = []
     
     def __init__(self, int_rate = 0.02, balance = 0):
@@ -36,17 +36,14 @@ class BankAccount:
 
     @staticmethod
     def can_withdraw(balance, amount):
-        if balance - amount >= 0:
-            return True
-        else:
-            return False
+        return balance - amount >= 0
+         
 
 
 class user:
     
     def __init__(self, name, account):
         self.name = name
-        # self.account_balance = account_balance
         self.account = BankAccount(int_rate = 0.02, balance = 0)
 
     def make_withdrawal(self, amount):
