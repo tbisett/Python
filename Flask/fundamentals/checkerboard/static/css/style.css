@@ -1,0 +1,14 @@
+
+/* I couldnt figure out how to make the get the static file display the jinja input: {{color1}} and {{color2}} */
+
+/* table tr td {
+    width: 75px;
+    height: 75px;
+}
+
+.color1 {
+    background-color: {{color1}};
+}
+.color2 {
+    background-color: {{color2}};
+} */
