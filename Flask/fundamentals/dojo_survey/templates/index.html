@@ -8,56 +8,62 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <style>
-    .container {
-        /* border: solid black; */
-        width: 500px
+    form {
+        border: solid black;
+    }
+    p {
+        text-align: center;
+    }
+    
+    .col-form-label {
+        align-self: center;
     }
 
-    form {
-        width: inherit;
-        border: solid black;
-        text-align: center;
+    #rows, button {
+        margin-bottom: 1em;
+        margin-left: 1em;
     }
-    /* p {
-        text-align: center;
+    #comment_text {
+        margin-left: .7em;
     }
-         */
+
+
 </style>
 <body>
-   <div class="container">
-    <form action="/result" method= "POST">
-        <p>
-            <label for="name">Your Name</label>
-            <input type="text" name="name" id="">
-        </p>
-        <p>
-            <label for="location">Dojo Location</label>
-            <select name="location" id="">
-                <option value="Bellevue">Bellevue</option>
-                <option value="Boise">Boise</option>
-                <option value="Chicago">Chicago</option>
-                <option value="Los Angeles">Los Angeles</option>
-                <option value="Silicon Valley">Silicon Valley</option>
-            </select>
-        </p>
-        <p>
-            <label for="language">Favorite Language</label>
-            <select name="language" id="">
-                <option value="Python">Python</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="Java">Java</option>
-                <option value="C#">C#</option>
-                <option value="C++">C++</option>
-            </select>
-        </p>
-        <p>
-            <label for="comment">Comment(optional)</label>
-        </p>
-        <p>
-            <textarea name="comment" id="" cols="30" rows="10"></textarea>
-        </p>
-        <button>Submit</button>
-    </form>
-   </div> 
+    <div class="container">
+        <form action="/result" method= "POST">
+                <div class="form-group row" id="rows">
+                    <label for="name" class="col-sm-2 col-form-label">Your Name</label>
+                    <div class="col-sm-2 col-form-label">
+                        <input type="text" name="name" class = "form-control">
+                    </div>
+                </div>
+                <div class="form-group row" id="rows">
+                    <label for="location" class="col-sm-2 col-form-label">Dojo Location</label>
+                    <select name="location" id="" class="col-sm-2 col-form-label">
+                        <option value="Bellevue">Bellevue</option>
+                        <option value="Boise">Boise</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="Silicon Valley">Silicon Valley</option>
+                    </select>
+                </div>
+            <div class="form-group row" id="rows">
+                <label for="language" class="col-sm-2 col-form-label">Favorite Language</label>
+                <select name="language" id="" class="col-sm-2 col-form-label">
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Java">Java</option>
+                    <option value="C#">C#</option>
+                    <option value="C++">C++</option>
+                </select>
+            </div>
+            <div class="form-group" id="rows">
+                <label for="comment" class="col-sm-2 col-form-label" id="comment_text">Comment (optional) :</label>
+                <textarea name="comment" id="" cols="30" rows="10" class="form-control"></textarea>
+            </div>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div> 
 </body>
 </html>
