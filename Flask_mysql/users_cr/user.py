@@ -23,7 +23,7 @@ class User:
         user_id = connectToMySQL("users").query_db(query, data)
         return user_id
 
-
+    #get all method is the only one that doesn't need data passed to the .query_db() method
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
@@ -41,3 +41,17 @@ class User:
         #results is a list of dictionaries
         #results[0] is the dictionary at the index of 0
         return cls(results[0])
+
+    @classmethod
+    def update(cls, data):
+        query = """ 
+            UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s,
+            updated_at = NOW() WHERE id = %(id)s;
+        
+        """
+        connectToMySQL("users").query_db(query, data)
+    
+    @classmethod
+    def delete(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s";
+        connectToMySQL("users").query_db(query, data)
