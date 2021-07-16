@@ -1,4 +1,4 @@
-from mysqlconnection import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
 
 # always make class name the plural and capitalized version of the sql table name you are making a query to
 class User:
