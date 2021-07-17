@@ -20,9 +20,11 @@
         </div>
         <div class="right-box">
             <h1>All Dojos</h1>
+            {% for dojo in all_dojos %}
             <p>
-
+                <a href="/dojo_list/{{dojo.id}}">{{dojo.name}}</a>
             </p>
+            {% endfor %}
             <a href="/new_ninja">Add Ninja</a>
         </div>
     </div>

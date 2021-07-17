@@ -1,6 +1,6 @@
 from flask_app import app
-from flask_app.controllers import dojo_controller
-from flask_app.controllers import ninja_controller
+from flask_app.controllers import dojo_controller,  ninja_controller
+
 
 
 
