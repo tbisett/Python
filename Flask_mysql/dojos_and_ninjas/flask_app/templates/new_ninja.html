@@ -8,16 +8,17 @@
 </head>
 <body>
     <h1>New Ninja</h1>
-    <form action="/create_ninja" method="post">
+    <form action="/create_ninja" method='post'>
         <p>
             <label for="dojos">Dojo: </label>
-            <select name="dojos" id="">
+            <select name="dojo_id" id="">
                 <option value="bellevue">Bellevue</option>
                 <option value="austin">Austin</option>
                 <option value="los_angeles">Los Angeles</option>
             </select>
         </p>
         <p>
+            <!-- name must equal name of value of rows in table(mySQL) -->
             First Name:
             <input type="text" name = "first_name">
         </p>

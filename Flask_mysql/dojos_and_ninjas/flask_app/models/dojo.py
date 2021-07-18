@@ -30,6 +30,7 @@ class Dojo:
         """
 
         dojo_id = connectToMySQL("dojos_and_ninjas").query_db(query, data)
+        print(dojo_id)
         return dojo_id
 
     
