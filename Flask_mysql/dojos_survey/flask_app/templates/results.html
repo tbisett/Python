@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reslults</title>
+</head>
+<style>
+    h3 {
+        text-decoration: underline;
+    }
+    div {
+        margin: 2em 2em;
+        border: solid black;
+        width: fit-content;
+        height: fit-content;
+    }
+    div > h3, p {
+        margin-left: .5em;
+        margin-right: .5em;
+    }
+</style>
+<body>
+    <div>
+        <h3>Submitted Info</h3>
+        <p>Name: {{dojo_id.name}}</p>
+        <p>Dojo Location: {{dojo_id.location}}</p>
+        <p>Favorite Language: {{dojo_id.language}}</p>
+        <p>Comments: {{dojo_id.comment}}</p>
+    </div> 
+</body>
+</html>
