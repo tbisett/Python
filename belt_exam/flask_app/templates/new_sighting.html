@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a recipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    a {
+        text-decoration: underline;
+    }
+    
+</style>
+<body>
+    <div class="header-container">
+        <div class="header">
+            <h1>Sasquatch Websighting</h1>
+        </div>
+        <div class="header2">
+            <p>
+                {{user.first_name}} {{user.last_name}}
+            </p>
+            <a href="/user/dashboard">dashboard</a> |
+            <a href="/logout">logout</a>
+        </div>
+    </div>
+    <!-- <div class="container"> -->
+        <div class="form-row">
+            <h3>Report a Sighting</h3>
+            <form action="/create/sighting" method = 'post'>
+                <div class="col-6">
+                    <p>
+                        Location: 
+                        <input type="text" name="location" id="">
+                    </p>
+                    <p>
+                        What Happened: 
+                        <textarea name="what_happened" id="" cols="30" rows="10"></textarea>
+                    </p>
+                    <button>Report</button>
+                </div>
+                <div class="col-6">
+                    <p>
+                        Date of Sighting:
+                        <input type="date" name="date_of_sighting" id="">
+                    </p>
+                    <p>
+                        # of Sasquatches:
+                        <input type="number" name="number_of_sasquatches" id="">
+                    </p>
+                </div>
+            </form>
+        </div> 
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    <!-- </div> -->
+</body>
+</html>

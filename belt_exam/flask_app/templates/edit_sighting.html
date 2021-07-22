@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+</head>
+<style>
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+<body>
+    <body>
+        <div class="header-container">
+            <div class="header">
+                <h1>Edit Sighting</h1>
+            </div>
+            <div class="header2">
+                <p>
+                    {{user.first_name}} {{user.last_name}}
+                </p>
+                <a href="/user/dashboard">dashboard</a> |
+                <a href="/logout">logout</a>
+            </div>
+        </div>
+        <div class="form-row">
+            <!-- may have to change to /edit/sighting/<int:id> -->
+            <form action="/edit/sighting/{{sighting.id}}" method = 'post'>
+                <div class="col-6">
+                    <p>
+                        Location:
+                        <input type="text" name="location" id="" value="{{sighting.location}}">
+                    </p>
+                    <p>
+                        What Happened: 
+                        <textarea name="what_happened" id="" cols="30" rows="10">{{sighting.what_happened}}</textarea>
+                    </p>
+                    <button>Update</button>
+                </div>
+                <div class="col-6">
+                    <p>
+                        Date of Sighting: 
+                        <input type="date" name="date_of_sighting" id="" value="{{sighting.date_of_sighting}}">
+                    </p>
+                    <p>
+                        # of Sasquatches:
+                        <input type="number" name="number_of_sasquatches" id="yes" value="{{sighting.number_of_sasquatches}}">
+                    </p>
+                </div>
+            </form>
+        </div> 
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div> 
+    </body>
+</body>
+</html>
