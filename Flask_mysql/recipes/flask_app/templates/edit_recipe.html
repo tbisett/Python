@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+</head>
+<style>
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+<body>
+    <body>
+        <div class="header-container">
+            <div class="header">
+                <h1>Edit Recipe</h1>
+            </div>
+            <div class="header2">
+                <a href="/user/dashboard">dashboard</a> |
+                <a href="/logout">logout</a>
+            </div>
+        </div>
+        <div class="form-row">
+            <form action="/edit/recipe" method = 'post'>
+                <div class="col-6">
+                    <p>
+                        Name: 
+                        <input type="text" name="name" id="" value="{{recipe.name}}"">
+                    </p>
+                    <p>
+                        Description: 
+                        <input type="text" name="description" id="" value="{{recipe.description}}">
+                    </p>
+                    <p>
+                        Instructions: 
+                        <input type="text" name="instructions" id="" value="{{recipe.instructions}}">
+                    </p>
+                    <button>Update</button>
+                </div>
+                <div class="col-6">
+                    <p>
+                        Date Made On:
+                        <input type="date" name="date_made" id="" value="{{recipe.date_made}}">
+                    </p>
+                    <p>
+                        Under 30 Minutes:
+                        <input type="radio" name="under_30_min" id="yes">
+                        <label for="yes">Yes</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="under_30_min" id="no">
+                        <label for="no">No</label>
+                    </p>
+                </div>
+            </form>
+        </div> 
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div> 
+    </body>
+</body>
+</html>

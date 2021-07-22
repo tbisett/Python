@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a recipe</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    a {
+        text-decoration: underline;
+    }
+    
+</style>
+<body>
+    <div class="header-container">
+        <div class="header">
+            <h1>Add New Recipe</h1>
+        </div>
+        <div class="header2">
+            <a href="/user/dashboard">dashboard</a> |
+            <a href="/logout">logout</a>
+        </div>
+    </div>
+    <!-- <div class="container"> -->
+        <div class="form-row">
+            <form action="/create/recipe" method = 'post'>
+                <div class="col-6">
+                    <p>
+                        Name: 
+                        <input type="text" name="name" id="">
+                    </p>
+                    <p>
+                        Description: 
+                        <textarea name="description" id="" cols="30" rows="10"></textarea>
+                    </p>
+                    <p>
+                        Instructions: 
+                        <textarea name="instructions" id="" cols="30" rows="10"></textarea>
+                    </p>
+                    <button>Create</button>
+                </div>
+                <div class="col-6">
+                    <p>
+                        Date Made On:
+                        <input type="date" name="date_made" id="">
+                    </p>
+                    <p>
+                        Under 30 Minutes:
+                        <input type="radio" name="under_30_minutes" id="yes" value="Yes">
+                        <label for="yes">Yes</label>
+                    </p>
+                    <p>
+                        <input type="radio" name="under_30_minutes" id="no" value="No">
+                        <label for="no">No</label>
+                    </p>
+                </div>
+            </form>
+        </div> 
+        <div class="flash">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    <!-- </div> -->
+</body>
+</html>
