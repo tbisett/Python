@@ -1,92 +1,76 @@
 /* 
-Given a SORTED array of integers, dedupe the array 
-Because array elements are already in order, all duplicate values will be grouped together.
-Ok to use a new array
-Bonus: do it in O(n) time (no nested loops, new array ok)
+Given an int to represent how much change is needed
+calculate the fewest number of coins needed to create that change,
+using the standard US denominations
 */
 
-const nums1 = [1, 1, 1, 1];
-const expected1 = [1];
+const cents1 = 25;
+const expected1 = { quarter: 1 };
 
-const nums2 = [1, 1, 2, 2, 3, 3];
-const expected2 = [1, 2, 3];
+const cents2 = 50;
+const expected2 = { quarter: 2 };
 
-const nums3 = [1, 1, 2, 3, 3, 4];
-const expected3 = [1, 2, 3, 4];
+const cents3 = 9;
+const expected3 = { nickel: 1, penny: 4 };
 
-// function dedupeSorted(nums) {
-//     newArr = [];
-//     for (let i = 0; i <= nums.length; i++) {
-//         if (nums[i] = nums[i + 1]) {
-//             newArr.push(nums[i]);
-//         }else if(nums[i] != nums[i + 1]) {
-//             return false
-//         }
-//     }
-// }
-// console.log(dedupeSorted(nums1))
+const cents4 = 99;
+const expected4 = { quarter: 3, dime: 2, penny: 4 };
 
-function dedupeSorted(nums) {
-    var seen = {};
-    var out = [];
-    var len = nums.length;
-    var j = 0;
-    for (let i = 0; i < len; i++) {
-        var item = nums[i];
-        if (seen[item] !== 1) {
-            seen[item] = 1;
-            out[j++] = item;
-        }
-    }
-    return out;
-} 
-console.log(dedupeSorted(nums1))
-console.log(dedupeSorted(nums2))
-console.log(dedupeSorted(nums3))
+function fewestCoinChange(cents) {
+    let coins= {};
+    let quarters = Math.floor(cents/25)
+    if (quarters >0) coins['quarter'] = quarters;
+
+    cents = cents - quarters*25;
+    let dimes = Math.floor(cents/10);
+    if (dimes > 0) coins['dime'] = dimes;
+    cents = cents - dimes * 10;
+    let nickles = Math.floor(cents/5)
+    if (nickles > 0) coins['nickle'] = nickles;
+    cents = cents - nickles * 5;
+    if (cents > 0) coins['penny'] = cents;
+    return coins;
+}
+
+console.log(fewestCoinChange(cents1))
+console.log(fewestCoinChange(cents2))
+console.log(fewestCoinChange(cents3))
+console.log(fewestCoinChange(cents4))
 /*****************************************************************************/
 
 /* 
-Array: Mode
-
-Create a function that, given an array of ints,
-returns the int that occurs most frequently in the array.
-What if there are multiple items that occur the same number of time?
-- return all of them (in an array)
-- what if all items occur the same number of times?
-- return empty array
+Missing Value
+You are given an array of length N that contains, in no particular order,
+integers from 0 to N . One integer value is missing.
+Quickly determine and return the missing value.
 */
 
-const nums1 = [];
-const expected1 = [];
 
-const nums2 = [1];
-const expected2 = [1];
+const nums1 = [3, 0, 1];
+const expected1 = 2;
 
-const nums3 = [5, 1, 4];
-const expected3 = [];
+const nums2 = [3, 0, 1, 2];
+const expected2 = null;
+// Explanation: nothing is missing
 
-const nums4 = [5, 1, 4, 1];
-const expected4 = [1];
+function missingValue(unorderedNums) {
 
-const nums5 = [5, 1, 4, 1, 5];
-const expected5 = [5, 1];
-//  - order doesn't matter
+let missingNum = null;
+let lowest = unorderedNums[0];
+let highest = unorderedNums[0];
 
-// function mode(nums) {
-//     var newArray = [];
-//     var len = nums.length;
-//     var counter = 0;
-//     for (let i = 0; i < len; i++) {
-//         for(let j = len - 1; j >= len - 1; j--) {
-//             if (nums[i] == nums[j]) {
-//                 newArray.push(nums[i]);
+for(let i = 0; i<unorderedNums.length;i++){
+    if(lowest> unorderedNums[i]) lowest = unorderedNums[i];
+    if(highest<unorderedNums[i]) highest = unorderedNums[i]; 
+}
 
-//             } else if (nums[i] !== nums[j]) {
-//                 continue;
-//             }
-//         }
-//     }
-//     return newArray;
-// }
+for (let i = lowest; i<=highest; i++){
+    if (!unorderedNums.includes(i)) missingNum = i;
+}
 
-// console.log(mode(nums5))
+
+return missingNum;
+}
+
+console.log(missingValue(nums1))
+console.log(missingValue(nums2))
