@@ -8,8 +8,6 @@ pygame.mixer.init()
 WIDTH, HEIGHT = 900, 500
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 FONT = pygame.font.Font('Pygame\Python_Project/Assets/PunkDemo.ttf', 100)
-FONT_2 = pygame.font.Font('Pygame\Python_Project/Assets/gravedigger.ttf', 70)
-FONT_3 = pygame.font.Font('Pygame\Python_Project/Assets/Cyberpunk-Regular.ttf', 105)
 
 # below sets the name that shows up on the main window
 pygame.display.set_caption("Cyberpsychos")
@@ -45,7 +43,6 @@ CHARACTER_HEIGHT = 155
 CHARACTER_WIDTH = 140
 YELLOW = (255, 255, 0)
 BULLET_IMG = pygame.image.load(os.path.join('Pygame\Python_Project', 'Assets/shot-2.png'))
-EXPLOSION_IMG = pygame.image.load(os.path.join('Pygame\Python_Project', 'Assets/enemy-explosion-3.png'))
 # below creates a user event in pygame so we can call on the bullet collision function later 
 # +1 and +2 is used to "give an id" to/ differentiate each event
 P1_HIT = pygame.USEREVENT + 1
@@ -75,16 +72,13 @@ def draw_window(player_1, player_2, p1_bullets, p2_bullets, p1_health, p2_health
     WIN.blit(CHARACTER_2, (player_2.x, player_2.y + 40))
     
     for bullet in p1_bullets:
-        WIN.blit(BULLET_IMG, bullet)
-        # pygame.draw.rect(WIN, YELLOW, bullet)
+        # WIN.blit(BULLET_IMG, (player_1.x + player_1.width, player_1.y + player_1.height//2 ))
+        pygame.draw.rect(WIN, YELLOW, bullet)
     
     for bullet in p2_bullets:
-        WIN.blit(BULLET_IMG, bullet)
-        # pygame.draw.rect(WIN, YELLOW, bullet)
-
+        pygame.draw.rect(WIN, YELLOW, bullet)
+    
     pygame.display.update()
-    
-    
 # variables for movement/jumping
 IS_JUMP = False
 JUMP_COUNT = 12
@@ -159,13 +153,13 @@ def control_bullets(p1_bullets, p2_bullets, player_1, player_2):
             p2_bullets.remove(bullet)
 
 def draw_winner(text):
-    draw_text = WINNING_FONT.render(text, 1, YELLOW)
+    draw_text = WINNING_FONT.render(text, 1, PURPLE)
     WIN.blit(draw_text, (WIDTH//2 - draw_text.get_width()/2, HEIGHT//2 - draw_text.get_height()//2))
     pygame.display.update()
     pygame.time.delay(5000)
 
 def draw_menu(text):
-    menu_text = FONT_2.render(text, 1, PURPLE)
+    menu_text = FONT.render(text, 1, PURPLE)
     WIN.blit(MENU_BACKGROUND_SCALED, (0, 0))
     WIN.blit(menu_text, (WIDTH//2 - menu_text.get_width()/2, HEIGHT//2 - menu_text.get_height()//2))
     pygame.display.update()
@@ -229,12 +223,9 @@ def main():
         winner_text = ""
         
         if p2_health <= 0:
-            WIN.blit(EXPLOSION_IMG, (player_2.x + 50, player_2.y + 70))
             winner_text = "Player 1 Wins!"
-            
         
         if p1_health <= 0:
-            WIN.blit(EXPLOSION_IMG, (player_1.x + 40, player_1.y + 70))
             winner_text = "Player 2 Wins!"
         
         if winner_text != "":
