@@ -5,7 +5,7 @@ from pathlib import Path
 pygame.font.init()
 pygame.mixer.init()
 # below sets the size of the display window the game will appear in
-WIDTH, HEIGHT = 900, 500
+WIDTH, HEIGHT = 1280, 720
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 FONT = pygame.font.Font('Pygame\Python_Project/Assets/PunkDemo.ttf', 100)
 FONT_2 = pygame.font.Font('Pygame\Python_Project/Assets/gravedigger.ttf', 70)
@@ -41,8 +41,8 @@ FPS = 60
 PLAYER_VEL = 5
 BULLET_VEL = 8
 MAX_BULLETS = 5
-CHARACTER_HEIGHT = 155 
-CHARACTER_WIDTH = 140
+CHARACTER_HEIGHT = 255 
+CHARACTER_WIDTH = 240
 YELLOW = (255, 255, 0)
 BULLET_IMG = pygame.image.load(os.path.join('Pygame\Python_Project', 'Assets/shot-2.png'))
 EXPLOSION_IMG = pygame.image.load(os.path.join('Pygame\Python_Project', 'Assets/enemy-explosion-3.png'))
@@ -71,8 +71,8 @@ def draw_window(player_1, player_2, p1_bullets, p2_bullets, p1_health, p2_health
     p2_health_text = HEALTH_FONT.render("Health: " + str(p2_health), 1, PURPLE)
     WIN.blit(p1_health_text, (10, 10))
     WIN.blit(p2_health_text, (WIDTH - p2_health_text.get_width() - 10, 10))
-    WIN.blit(CHARACTER_1, (player_1.x, player_1.y + 40))
-    WIN.blit(CHARACTER_2, (player_2.x, player_2.y + 40))
+    WIN.blit(CHARACTER_1, (player_1.x + 15, player_1.y + 160))
+    WIN.blit(CHARACTER_2, (player_2.x + 305, player_2.y + 160))
     
     for bullet in p1_bullets:
         WIN.blit(BULLET_IMG, bullet)
@@ -97,14 +97,14 @@ MOVE_RIGHT = False
 def player_1_movement(keys_pressed, player_1):
     global IS_JUMP
     global JUMP_COUNT
-    if keys_pressed[pygame.K_a] and player_1.x > -30 : 
+    if keys_pressed[pygame.K_a] and player_1.x > -80 : 
             player_1.x -= PLAYER_VEL
     if keys_pressed[pygame.K_d] and player_1.x + player_1.width < WIDTH + 30:
         player_1.x += PLAYER_VEL
     if not (IS_JUMP):
         if keys_pressed[pygame.K_w] and player_1.y > -25:
             IS_JUMP = True
-        if keys_pressed[pygame.K_s] and player_1.y + player_1.height < HEIGHT - 43:
+        if keys_pressed[pygame.K_s] and player_1.y + player_1.height < HEIGHT - 160:
             player_1.y += PLAYER_VEL
     else:
         if JUMP_COUNT > -12:
@@ -120,14 +120,14 @@ def player_1_movement(keys_pressed, player_1):
 def player_2_movement(keys_pressed, player_2):
     global IS_JUMP_2
     global JUMP_COUNT_2
-    if keys_pressed[pygame.K_LEFT] and player_2.x > -30: 
+    if keys_pressed[pygame.K_LEFT] and player_2.x > -350: 
             player_2.x -= PLAYER_VEL
     if keys_pressed[pygame.K_RIGHT] and player_2.x + player_2.width < WIDTH + 30:
         player_2.x += PLAYER_VEL
     if not (IS_JUMP_2):
         if keys_pressed[pygame.K_UP] and player_2.y > -25:
             IS_JUMP_2 = True
-        if keys_pressed[pygame.K_DOWN] and player_2.y + player_2.height < HEIGHT - 43:
+        if keys_pressed[pygame.K_DOWN] and player_2.y + player_2.height < HEIGHT - 160:
             player_2.y += PLAYER_VEL
     else:
         if JUMP_COUNT_2 > -12:
@@ -173,8 +173,8 @@ def draw_menu(text):
 # Below is the main game loop that will infinitely run until the quit or restart function is activated.
 def main():
     # below is creating the rectancgles needed for the player images to move as well as for hit detection. Passingin the starting coordinates and the player height and width
-    player_1 = pygame.Rect(10, 300, CHARACTER_WIDTH, CHARACTER_HEIGHT )
-    player_2 = pygame.Rect(700, 300, CHARACTER_WIDTH, CHARACTER_HEIGHT)
+    player_1 = pygame.Rect(10, 300, CHARACTER_WIDTH + 30, CHARACTER_HEIGHT - 160 )
+    player_2 = pygame.Rect(700, 300, CHARACTER_WIDTH + 30, CHARACTER_HEIGHT - 160)
     # below are the arrays that will store bullet count
     p1_bullets = []
     p2_bullets = []
@@ -186,9 +186,9 @@ def main():
     # below defines a frame rate/loop refresh clock
     clock = pygame.time.Clock()
     run = True
-    if run == True:
-        text = "Cyberpsychos"
-        draw_menu(text)
+    # if run == True:
+    #     text = "Cyberpsychos"
+    #     draw_menu(text)
         
     while run:
         # below controls the speed of the while loop. Set to the fps variable defined at the top
@@ -205,13 +205,13 @@ def main():
 # player height / 2 and player width so the bullet appears directly in front of the player
 # it also passes the width and height(in px) of the bullet
                 if event.key == pygame.K_LCTRL and len(p1_bullets) < MAX_BULLETS:
-                    bullet = pygame.Rect(player_1.x + player_1.width, player_1.y + player_1.height//2 + 17 , 10, 5)
+                    bullet = pygame.Rect(player_1.x + player_1.width, player_1.y + player_1.height//2 + 200 , 10, 5)
                     p1_bullets.append (bullet)
                     BULLET_FIRED_AUDIO.set_volume(0.3)
                     BULLET_FIRED_AUDIO.play()
                 
                 if event.key == pygame.K_RCTRL and len(p2_bullets) < MAX_BULLETS: 
-                    bullet = pygame.Rect(player_2.x, player_2.y + player_2.height//2 + 17 , 10, 5)
+                    bullet = pygame.Rect(player_2.x, player_2.y + player_2.height//2 + 200 , 10, 5)
                     p2_bullets.append (bullet)
                     BULLET_FIRED_AUDIO_2.set_volume(0.3)
                     BULLET_FIRED_AUDIO_2.play()

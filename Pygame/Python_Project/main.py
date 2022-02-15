@@ -51,7 +51,7 @@ EXPLOSION_IMG = pygame.image.load(os.path.join('Pygame\Python_Project', 'Assets/
 P1_HIT = pygame.USEREVENT + 1
 P2_HIT = pygame.USEREVENT + 2
 
-HEALTH_FONT = pygame.font.Font('Pygame\Python_Project/Assets/PunkDemo.ttf', 40)
+HEALTH_FONT = pygame.font.Font('Pygame\Python_Project/Assets/PunkDemo.ttf', 50)
 # WINNING_FONT = pygame.font.SysFont('Georgia' , 100)
 WINNING_FONT = pygame.font.Font('Pygame\Python_Project/Assets/PunkDemo.ttf', 100)
 
@@ -172,7 +172,7 @@ def draw_menu(text):
     pygame.time.delay(10000)
 # Below is the main game loop that will infinitely run until the quit or restart function is activated.
 def main():
-    # below is creating the rectancgles needed for the player images to move as well as for hit detection. Passingin the starting coordinates and the player height and width
+    # below is creating the rectancgles needed for the player images to move as well as for hit detection. Passing in the starting coordinates and the player height and width
     player_1 = pygame.Rect(10, 300, CHARACTER_WIDTH, CHARACTER_HEIGHT )
     player_2 = pygame.Rect(700, 300, CHARACTER_WIDTH, CHARACTER_HEIGHT)
     # below are the arrays that will store bullet count
